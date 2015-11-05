@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<category id="Tutorial to or from json" name="Tutorial to or from json" xmlns="http://jessevdk.github.com/cldoc/1.0">
+  <brief>With pre::json you can serialize or deserialize any C++ Type to JSON, even composite and aggregate types.</brief>
+  <category name="Serialize anything" ref="Tutorial to or from json::Serialize anything#Tutorial to or from json::Serialize anything">
+    <brief>You can serialize anything to json.</brief>
+  </category>
+  <category name="Deserialize anything" ref="Tutorial to or from json::Deserialize anything#Tutorial to or from json::Deserialize anything">
+    <brief>You can deserialize to any type from json.</brief>
+  </category>
+</category>

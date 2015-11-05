@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<namespace id="boost::asio" name="asio" xmlns="http://jessevdk.github.com/cldoc/1.0">
+  <class name="mockup_serial_port_service" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service">
+    <brief> mockup_serial_port_service : A virtual serial port allowing to write cross platform unit tests of serial communicating application.</brief>
+  </class>
+</namespace>

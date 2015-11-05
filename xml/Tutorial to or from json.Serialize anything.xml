@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<category id="Tutorial to or from json::Serialize anything" name="Serialize anything" xmlns="http://jessevdk.github.com/cldoc/1.0">
+  <brief>You can serialize anything to json.</brief>
+  <doc>See : 
+
+  - [Full example](examples/to_json.cpp)
+  - [Extended examples](test/dejsonize_test.cpp)
+
+```cpp
+  #include &lt;iostream&gt;
+  #include &lt;pre/json/to_json.hpp&gt; 
+ 
+  struct customer {
+    std::string name;
+    size_t money_spent; 
+    std::vector&lt;std::string&gt; interests;
+  };
+
+  BOOST_FUSION_ADAPT_STRUCT(customer,
+    name,
+    money_spent,
+    interests)
+ 
+ ...
+
+ customer my_customer{
+   "Mr. Dupond",
+   1000,
+   {"sport articles", "food", "tools"}
+ };
+
+ std::cout &lt;&lt; pre::json::to_json(my_customer) &lt;&lt; std::endl;
+```
+</doc>
+</category>

@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8'?>
+<index xmlns="http://jessevdk.github.com/cldoc/1.0">
+  <brief>C++11 header-only pre::boost companion library baked with love.</brief>
+  <doc># cpp pre library 
+C++11 header-only pre::boost companion library baked with love.
+
+## Features
+
+  * [to\_json](index.html#pre::json/pre::json::to_json) &amp; [from\_json](index.html#pre::json/pre::json::to_json) functions for **any custom or standard types &amp; aggregate**.
+  * A [mockup serial port](index.html#boost::asio::mockup_serial_port_service) working with boost::asio
+  * safe cast from enums underlying\_type in the enum type.
+  * std::chrono::duration &amp; boost::chrono::duration suffixes for ms, sec... until C++14 is mainstream.
+  * bytes &amp; bits manipulation utilities
+
+## About
+This C++11 header-only library provides utilities that we miss in Boost for the moment when writing high-quality productive code.
+
+We author it in our free time to help our personal project and companies to centralize useful reusable code, that we polish until we can propose it to the Boost Libraries.
+
+We always deprecate our own implementation when the Boost community finally accepts them, because we are just a backward-compatible staging-library for small Boost utilities. 
+
+That's why we named it pre, like pre::boost.
+
+## Getting started
+The library is header only, but has dependencies on Boost 1.59.0 and nlohmann-json.
+
+### With hunter CMake Package manager
+Simply drop in your CMakeLists.txt the following : 
+```cmake
+hunter_add_package(lib-cpp-pre)
+find_package(lib-cpp-pre 1.3.2 REQUIRED)
+include_directories(AFTER ${LIB_CPP_PRE_INCLUDE_DIRS})
+```
+
+### Without hunter
+You can install these dependencies yourself, and then install the library this way : 
+```shell
+mkdir build/
+cd build/
+cmake .. &amp;&amp; make install
+```
+
+## What we already brought to Boost
+
+- [BOOST\_FUSION\_ADAPT\_STRUCT auto type deduction](http://www.boost.org/doc/libs/release/libs/fusion/doc/html/fusion/adapted/adapt_struct.html) and we maitain it there.
+
+## License
+Licensed under the MIT License, see [LICENSE](LICENSE).
+
+## Contributors
+
+- Damien Buhl (alias daminetreg)
+- Patrick Wieder (alias linkineo) for his reviews</doc>
+  <category name="Tutorial to or from json" ref="Tutorial to or from json#Tutorial to or from json">
+    <brief>With pre::json you can serialize or deserialize any C++ Type to JSON, even composite and aggregate types.</brief>
+    <category name="Serialize anything" ref="Tutorial to or from json::Serialize anything#Tutorial to or from json::Serialize anything">
+      <brief>You can serialize anything to json.</brief>
+    </category>
+    <category name="Deserialize anything" ref="Tutorial to or from json::Deserialize anything#Tutorial to or from json::Deserialize anything">
+      <brief>You can deserialize to any type from json.</brief>
+    </category>
+  </category>
+  <namespace name="boost" ref="boost#boost">
+    <namespace name="asio" ref="boost::asio#boost::asio">
+      <class name="mockup_serial_port_service" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service">
+        <brief> mockup_serial_port_service : A virtual serial port allowing to write cross platform unit tests of serial communicating application.</brief>
+      </class>
+    </namespace>
+  </namespace>
+  <namespace name="pre" ref="pre#pre">
+    <namespace name="enums" ref="pre::enums#pre::enums" />
+    <namespace name="json" ref="pre::json#pre::json" />
+  </namespace>
+</index>

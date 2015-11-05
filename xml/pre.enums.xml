@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<namespace id="pre::enums" name="enums" xmlns="http://jessevdk.github.com/cldoc/1.0">
+  <functiontemplate id="pre::enums::to_underlying" name="to_underlying">
+    <brief>*</brief>
+    <doc>\return The enum typed value casted to it's underlying_type.
+</doc>
+    <return>
+      <type name="typename std::underlying_type&lt;E&gt;::type" />
+    </return>
+    <argument id="pre::enums::to_underlying::e" name="e">
+      <type name="E" />
+    </argument>
+    <templatetypeparameter id="pre::enums::to_underlying::E" name="E" />
+  </functiontemplate>
+</namespace>

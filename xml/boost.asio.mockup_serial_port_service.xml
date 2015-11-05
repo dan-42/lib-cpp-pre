@@ -1,0 +1,297 @@
+<?xml version='1.0' encoding='utf-8'?>
+<class id="boost::asio::mockup_serial_port_service" name="mockup_serial_port_service" xmlns="http://jessevdk.github.com/cldoc/1.0">
+  <brief> mockup_serial_port_service : A virtual serial port allowing to write cross platform unit tests of serial communicating application.</brief>
+  <doc>This class can be used in your unit tests to simulate a [boost::asio::serial_port](http://www.boost.org/doc/libs/release/doc/html/boost_asio/reference/serial_port.html).
+
+### Example
+
+```cpp
+
+  using namespace boost::asio;
+
+  boost::thread simulate_writing_device([](){
+    io_service ios;
+    basic_serial_port&lt;mockup_serial_port_service&gt; port{ios, "my_fake_serial_port"};
+
+    const std::string message = "Hello";
+
+    for (;;) {
+     boost::asio::write(port, buffer(message.data(), message.size()));
+     boost::this_thread::sleep_for(boost::chrono::seconds(1));
+    }
+
+  });
+
+  boost::thread simulate_reading_device([](){
+    io_service ios;
+    basic_serial_port&lt;mockup_serial_port_service&gt; port{ios, "my_fake_serial_port"};
+
+    for (;;) {
+      char message[5];
+      boost::asio::read(port, buffer(message, 5));
+      std::cout &lt;&lt; "received : " &lt;&lt; std::string(message, 5) &lt;&lt; std::endl;
+    }
+
+  });
+
+```
+
+  - [Full example](../examples/boost_asio_mockup_serial_port.cpp)
+  - [Extended examples](../test/asio_mockup_serial_port_service_test.cpp)
+
+</doc>
+  <base access="public">
+    <type name="detail::service_base&lt;boost::asio::mockup_serial_port_service&gt;" />
+  </base>
+  <methodtemplate id="boost::asio::mockup_serial_port_service::async_read_some" name="async_read_some">
+    <brief>/ Start an asynchronous read.</brief>
+    <return>
+      <type name="typename ::boost::asio::async_result&lt;typename ::boost::asio::handler_type&lt;ReadHandler, void (boost::system::error_code, std::size_t)&gt;::type&gt;::type" />
+    </return>
+    <argument id="boost::asio::mockup_serial_port_service::async_read_some::" name="">
+      <type name="system::error_code" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::async_read_some::" name="">
+      <type name="std::size_t" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::async_read_some::impl" name="impl">
+      <type name="implementation_type" qualifier=" &amp;" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::implementation_type" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::async_read_some::buffers" name="buffers">
+      <type name="const MutableBufferSequence" qualifier=" const &amp;" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::async_read_some::handler" name="handler">
+      <type name="ReadHandler &amp;&amp;" />
+    </argument>
+    <templatetypeparameter id="boost::asio::mockup_serial_port_service::async_read_some::MutableBufferSequence" name="MutableBufferSequence" />
+    <templatetypeparameter id="boost::asio::mockup_serial_port_service::async_read_some::ReadHandler" name="ReadHandler" />
+  </methodtemplate>
+  <methodtemplate id="boost::asio::mockup_serial_port_service::async_write_some" name="async_write_some">
+    <brief>/ Start an asynchronous write.</brief>
+    <return>
+      <type name="typename ::boost::asio::async_result&lt;typename ::boost::asio::handler_type&lt;WriteHandler, void (boost::system::error_code, std::size_t)&gt;::type&gt;::type" />
+    </return>
+    <argument id="boost::asio::mockup_serial_port_service::async_write_some::" name="">
+      <type name="system::error_code" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::async_write_some::" name="">
+      <type name="std::size_t" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::async_write_some::impl" name="impl">
+      <type name="implementation_type" qualifier=" &amp;" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::implementation_type" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::async_write_some::buffers" name="buffers">
+      <type name="const ConstBufferSequence" qualifier=" const &amp;" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::async_write_some::handler" name="handler">
+      <type name="WriteHandler &amp;&amp;" />
+    </argument>
+    <templatetypeparameter id="boost::asio::mockup_serial_port_service::async_write_some::ConstBufferSequence" name="ConstBufferSequence" />
+    <templatetypeparameter id="boost::asio::mockup_serial_port_service::async_write_some::WriteHandler" name="WriteHandler" />
+  </methodtemplate>
+  <methodtemplate id="boost::asio::mockup_serial_port_service::get_option" name="get_option">
+    <brief>/ Get a serial port option.</brief>
+    <return>
+      <type name="system::error_code" />
+    </return>
+    <argument id="boost::asio::mockup_serial_port_service::get_option::impl" name="impl">
+      <type name="implementation_type" qualifier=" const &amp;" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::implementation_type" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::get_option::option" name="option">
+      <type name="GettableSerialPortOption" qualifier=" &amp;" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::get_option::ec" name="ec">
+      <type name="system::error_code" qualifier=" &amp;" />
+    </argument>
+    <templatetypeparameter id="boost::asio::mockup_serial_port_service::get_option::GettableSerialPortOption" name="GettableSerialPortOption" />
+  </methodtemplate>
+  <methodtemplate id="boost::asio::mockup_serial_port_service::read_some" name="read_some">
+    <brief>/ Read some data from the stream.</brief>
+    <return>
+      <type name="std::size_t" />
+    </return>
+    <argument id="boost::asio::mockup_serial_port_service::read_some::impl" name="impl">
+      <type name="implementation_type" qualifier=" &amp;" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::implementation_type" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::read_some::buffers" name="buffers">
+      <type name="const MutableBufferSequence" qualifier=" const &amp;" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::read_some::ec" name="ec">
+      <type name="system::error_code" qualifier=" &amp;" />
+    </argument>
+    <templatetypeparameter id="boost::asio::mockup_serial_port_service::read_some::MutableBufferSequence" name="MutableBufferSequence" />
+  </methodtemplate>
+  <methodtemplate id="boost::asio::mockup_serial_port_service::set_option" name="set_option">
+    <brief>/ Set a serial port option.</brief>
+    <return>
+      <type name="system::error_code" />
+    </return>
+    <argument id="boost::asio::mockup_serial_port_service::set_option::impl" name="impl">
+      <type name="implementation_type" qualifier=" &amp;" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::implementation_type" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::set_option::option" name="option">
+      <type name="const SettableSerialPortOption" qualifier=" const &amp;" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::set_option::ec" name="ec">
+      <type name="system::error_code" qualifier=" &amp;" />
+    </argument>
+    <templatetypeparameter id="boost::asio::mockup_serial_port_service::set_option::SettableSerialPortOption" name="SettableSerialPortOption" />
+  </methodtemplate>
+  <methodtemplate id="boost::asio::mockup_serial_port_service::write_some" name="write_some">
+    <brief>/ Write the given data to the stream.</brief>
+    <return>
+      <type name="std::size_t" />
+    </return>
+    <argument id="boost::asio::mockup_serial_port_service::write_some::impl" name="impl">
+      <type name="implementation_type" qualifier=" &amp;" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::implementation_type" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::write_some::buffers" name="buffers">
+      <type name="const ConstBufferSequence" qualifier=" const &amp;" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::write_some::ec" name="ec">
+      <type name="system::error_code" qualifier=" &amp;" />
+    </argument>
+    <templatetypeparameter id="boost::asio::mockup_serial_port_service::write_some::ConstBufferSequence" name="ConstBufferSequence" />
+  </methodtemplate>
+  <typedef id="boost::asio::mockup_serial_port_service::implementation_type" name="implementation_type">
+    <brief>/ The type of a serial port implementation.</brief>
+    <type name="detail::mockup_serial_port_service::implementation_type" />
+  </typedef>
+  <typedef id="boost::asio::mockup_serial_port_service::native_handle_type" name="native_handle_type">
+    <brief>/ The native handle type.</brief>
+    <type builtin="yes" name="int" />
+  </typedef>
+  <typedef id="boost::asio::mockup_serial_port_service::native_type" name="native_type">
+    <brief>/ (Deprecated: Use native_handle_type.) The native handle type.</brief>
+    <type builtin="yes" name="int" />
+  </typedef>
+  <constructor id="boost::asio::mockup_serial_port_service::mockup_serial_port_service" name="mockup_serial_port_service">
+    <brief>/ Construct a new serial port service for the specified io_service.</brief>
+    <argument id="boost::asio::mockup_serial_port_service::mockup_serial_port_service::io_service" name="io_service">
+      <type name="io_service" qualifier=" &amp;" />
+    </argument>
+  </constructor>
+  <method id="boost::asio::mockup_serial_port_service::assign" name="assign">
+    <brief>/ Assign an existing native handle to a serial port.</brief>
+    <return>
+      <type name="system::error_code" />
+    </return>
+    <argument id="boost::asio::mockup_serial_port_service::assign::impl" name="impl">
+      <type name="implementation_type" qualifier=" &amp;" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::implementation_type" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::assign::handle" name="handle">
+      <type name="native_handle_type" qualifier=" const &amp;" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::native_handle_type" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::assign::ec" name="ec">
+      <type name="system::error_code" qualifier=" &amp;" />
+    </argument>
+  </method>
+  <method id="boost::asio::mockup_serial_port_service::cancel" name="cancel">
+    <brief>/ Cancel all asynchronous operations associated with the handle.</brief>
+    <return>
+      <type name="system::error_code" />
+    </return>
+    <argument id="boost::asio::mockup_serial_port_service::cancel::impl" name="impl">
+      <type name="implementation_type" qualifier=" &amp;" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::implementation_type" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::cancel::ec" name="ec">
+      <type name="system::error_code" qualifier=" &amp;" />
+    </argument>
+  </method>
+  <method id="boost::asio::mockup_serial_port_service::close" name="close">
+    <brief>/ Close a serial port implementation.</brief>
+    <return>
+      <type name="system::error_code" />
+    </return>
+    <argument id="boost::asio::mockup_serial_port_service::close::impl" name="impl">
+      <type name="implementation_type" qualifier=" &amp;" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::implementation_type" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::close::ec" name="ec">
+      <type name="system::error_code" qualifier=" &amp;" />
+    </argument>
+  </method>
+  <method id="boost::asio::mockup_serial_port_service::construct" name="construct">
+    <brief>/ Construct a new serial port implementation.</brief>
+    <return>
+      <type builtin="yes" name="void" />
+    </return>
+    <argument id="boost::asio::mockup_serial_port_service::construct::impl" name="impl">
+      <type name="implementation_type" qualifier=" &amp;" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::implementation_type" />
+    </argument>
+  </method>
+  <method id="boost::asio::mockup_serial_port_service::destroy" name="destroy">
+    <brief>/ Destroy a serial port implementation.</brief>
+    <return>
+      <type builtin="yes" name="void" />
+    </return>
+    <argument id="boost::asio::mockup_serial_port_service::destroy::impl" name="impl">
+      <type name="implementation_type" qualifier=" &amp;" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::implementation_type" />
+    </argument>
+  </method>
+  <method id="boost::asio::mockup_serial_port_service::is_open" name="is_open">
+    <brief>/ Determine whether the handle is open.</brief>
+    <return>
+      <type builtin="yes" name="bool" />
+    </return>
+    <argument id="boost::asio::mockup_serial_port_service::is_open::impl" name="impl">
+      <type name="implementation_type" qualifier=" const &amp;" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::implementation_type" />
+    </argument>
+  </method>
+  <method id="boost::asio::mockup_serial_port_service::move_construct" name="move_construct">
+    <brief>/ Move-construct a new serial port implementation.</brief>
+    <return>
+      <type builtin="yes" name="void" />
+    </return>
+    <argument id="boost::asio::mockup_serial_port_service::move_construct::impl" name="impl">
+      <type name="implementation_type" qualifier=" &amp;" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::implementation_type" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::move_construct::other_impl" name="other_impl">
+      <type name="implementation_type" qualifier=" &amp;" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::implementation_type" />
+    </argument>
+  </method>
+  <method id="boost::asio::mockup_serial_port_service::native" name="native">
+    <brief>/ (Deprecated: Use native_handle().) Get the native handle implementation.</brief>
+    <return>
+      <type name="native_type" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::native_type" />
+    </return>
+    <argument id="boost::asio::mockup_serial_port_service::native::impl" name="impl">
+      <type name="implementation_type" qualifier=" &amp;" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::implementation_type" />
+    </argument>
+  </method>
+  <method id="boost::asio::mockup_serial_port_service::native_handle" name="native_handle">
+    <brief>/ Get the native handle implementation.</brief>
+    <return>
+      <type name="native_handle_type" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::native_handle_type" />
+    </return>
+    <argument id="boost::asio::mockup_serial_port_service::native_handle::impl" name="impl">
+      <type name="implementation_type" qualifier=" &amp;" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::implementation_type" />
+    </argument>
+  </method>
+  <method id="boost::asio::mockup_serial_port_service::open" name="open">
+    <brief>/ Open a serial port.</brief>
+    <return>
+      <type name="system::error_code" />
+    </return>
+    <argument id="boost::asio::mockup_serial_port_service::open::impl" name="impl">
+      <type name="implementation_type" qualifier=" &amp;" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::implementation_type" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::open::device" name="device">
+      <type name="std::string" qualifier=" const &amp;" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::open::ec" name="ec">
+      <type name="system::error_code" qualifier=" &amp;" />
+    </argument>
+  </method>
+  <method id="boost::asio::mockup_serial_port_service::send_break" name="send_break">
+    <brief>/ Send a break sequence to the serial port.</brief>
+    <return>
+      <type name="system::error_code" />
+    </return>
+    <argument id="boost::asio::mockup_serial_port_service::send_break::impl" name="impl">
+      <type name="implementation_type" qualifier=" &amp;" ref="boost::asio::mockup_serial_port_service#boost::asio::mockup_serial_port_service::implementation_type" />
+    </argument>
+    <argument id="boost::asio::mockup_serial_port_service::send_break::ec" name="ec">
+      <type name="system::error_code" qualifier=" &amp;" />
+    </argument>
+  </method>
+</class>

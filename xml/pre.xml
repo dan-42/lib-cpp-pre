@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<namespace id="pre" name="pre" xmlns="http://jessevdk.github.com/cldoc/1.0">
+  <namespace name="enums" ref="pre::enums#pre::enums" />
+  <namespace name="json" ref="pre::json#pre::json" />
+</namespace>
