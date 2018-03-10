@@ -6,7 +6,7 @@ HunterGate(
     SHA1 "18cdbf5c47abdda437c73bf5437b7c3c65afe47c"
 )
 
-project (cpp-pre VERSION 1.4.3)
+project (cpp-pre VERSION 1.5.0)
 
 
 # Compile unit tests
