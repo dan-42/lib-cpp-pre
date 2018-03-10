@@ -13,6 +13,21 @@ function(add_unit_test)
   target_link_libraries(test_${add_unit_test_NAME} 
     ${add_unit_test_LIBS})
 
+
+  target_include_directories(
+    test_${add_unit_test_NAME} 
+    INTERFACE
+    $<BUILD_INTERFACE:${LIB_CPP_PRE_INCLUDE_BUILD_DIR}>
+    $<INSTALL_INTERFACE:include>
+ )
+
+  target_include_directories(
+    test_${add_unit_test_NAME} 
+    INTERFACE
+    $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>
+  )
+
+    
   add_test(NAME test_${add_unit_test_NAME}
       WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
       COMMAND ${CMAKE_CURRENT_BINARY_DIR}/test_${add_unit_test_NAME} )
@@ -39,17 +54,15 @@ endif(BUILD_SHARED_LIBS)
 
 
 hunter_add_package(Boost COMPONENTS system thread log chrono filesystem  
-  date_time iostreams log)
-find_package(Boost 1.58 COMPONENTS system thread log chrono filesystem
-  date_time iostreams log REQUIRED) 
-include_directories(AFTER ${Boost_INCLUDE_DIRS})
-link_directories ( ${Boost_LIBRARY_DIRS} )
-
+  date_time log)
+find_package(Boost 1.66 COMPONENTS system thread log chrono filesystem
+  date_time log REQUIRED) 
+  
 include_directories(BEFORE ${CMAKE_SOURCE_DIR})
 
 # nlohmann-json
-hunter_add_package(nlohmann-json)
-find_package(nlohmann-json REQUIRED)
+hunter_add_package(nlohmann_json)
+find_package(nlohmann_json REQUIRED)
 
 set (platform_specific_lib)
 if(WIN32)
@@ -57,14 +70,14 @@ if(WIN32)
  set (platform_specific_lib ws2_32)
 endif()
 
-add_unit_test(NAME asio_mockup_serial_port_service_test 
-  LIBS 
-  ${CMAKE_THREAD_LIBS_INIT}
-  ${Boost_LIBRARIES}
-  ${platform_specific_lib})
+#add_unit_test(NAME asio_mockup_serial_port_service_test 
+#  LIBS 
+#  ${CMAKE_THREAD_LIBS_INIT}
+#  ${Boost_LIBRARIES}
+#  ${platform_specific_lib})
 
 add_unit_test(NAME dejsonize_test
-  LIBS nlohmann-json::nlohmann-json)
+  LIBS nlohmann_json)
 
 add_unit_test(NAME function_traits_test 
   LIBS 
